@@ -9,6 +9,8 @@ namespace ProjectCar.Services.Mapper
         public ServiceCarProfile()
         {
             CreateMap<Part, PartDTO>().ReverseMap();
+            CreateMap<User, UserDTO>().ReverseMap();
+            CreateMap<Timetable, TimetableDTO>().ReverseMap();
         }
     }
 }

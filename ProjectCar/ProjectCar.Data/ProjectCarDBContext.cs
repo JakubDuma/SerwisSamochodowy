@@ -6,6 +6,8 @@ namespace ProjectCar.Data
     public class ProjectCarDBContext : DbContext
     {
         public DbSet<Part> Parts { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Timetable> Timetables { get; set; }
 
         // Pozostałe modele/tabele dla DB
 
