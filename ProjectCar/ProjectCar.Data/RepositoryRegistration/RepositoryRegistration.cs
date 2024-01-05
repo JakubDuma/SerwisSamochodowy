@@ -10,6 +10,7 @@ namespace ProjectCar.Data.RepositoryRegistration
         {
             services.AddScoped<IPartRepository, PartRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ITimetableRepository, TimetableRepository>();
         }
     }
 }
