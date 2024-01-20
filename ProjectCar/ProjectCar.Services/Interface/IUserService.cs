@@ -13,5 +13,7 @@ namespace ProjectCar.Services.Interface
         List<UserDTO> GetAll();
 
         void Update(UserDTO user);
+
+        bool Login(LoginDTO login);
     }
 }

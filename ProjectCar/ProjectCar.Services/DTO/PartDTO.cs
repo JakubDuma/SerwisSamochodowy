@@ -6,6 +6,7 @@
         public string Name { get; set; }
         public string Category { get; set; }
         public string Description { get; set; }
-        public int Availability { get; set; }
+        public int ServiceAvailability { get; set; }
+        public int WarehouseAvailability { get; set; }
     }
 }
