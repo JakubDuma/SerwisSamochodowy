@@ -53,15 +53,5 @@ namespace ProjectCar.Controllers
         {
             _userService.Delete(id);
         }
-
-        [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginDTO dto)
-        {
-            var login = _userService.Login(dto);
-            if (login)
-                return Ok(200);
-            else
-                return BadRequest("Nieprawidłowy email lub hasło.");
-        }
     }
 }

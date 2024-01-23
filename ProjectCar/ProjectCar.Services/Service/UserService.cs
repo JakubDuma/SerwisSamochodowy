@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Identity;
 using ProjectCar.Data.Interface;
 using ProjectCar.Data.Models;
 using ProjectCar.Services.DTO;
@@ -11,7 +10,6 @@ namespace ProjectCar.Services.Service
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
-        private readonly IPasswordHasher<User> _passwordHasher;
 
         public UserService(IUserRepository userRepository, IMapper mapper)
         {
@@ -47,17 +45,6 @@ namespace ProjectCar.Services.Service
         {
             var updateUser = _mapper.Map<User>(user);
             _userRepository.Update(updateUser);
-        }
-
-        public bool Login(LoginDTO login)
-        {
-            var checkUser = _userRepository.Login(login.Email);
-            //var hashedCheckUserPassword = _passwordHasher.VerifyHashedPassword(checkUser, checkUser.Password, login.Password);
-            if (checkUser != null && checkUser.Password == login.Password)
-            {
-                return true;
-            }
-            else { return false; }
         }
     }
 }

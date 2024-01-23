@@ -8,6 +8,6 @@
         public string Email { get; set; }
         public long? Nip { get; set; }
         public string Password { get; set; }
-        public string Role { get; set; } = "Klient";
+        public string Role { get; set; }
     }
 }
