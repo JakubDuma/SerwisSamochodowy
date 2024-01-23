@@ -46,5 +46,11 @@ namespace ProjectCar.Services.Service
             var updateTimetable = _mapper.Map<Timetable>(timetable);
             _timetableRepository.Update(updateTimetable);
         }
+
+        public List<TimetableDTO> GetMyOrders(int id)
+        {
+            var timetables = _timetableRepository.GetMyOrders(id);
+            return _mapper.Map<List<TimetableDTO>>(timetables);
+        }
     }
 }

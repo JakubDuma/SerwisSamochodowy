@@ -40,5 +40,10 @@ namespace ProjectCar.Data.Repository
             _context.Remove(Get(id));
             _context.SaveChanges();
         }
+
+        public List<Timetable> GetMyOrders(int id)
+        {
+            return _context.Timetables.Where(u => u.UserId == id).ToList();
+        }
     }
 }

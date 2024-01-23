@@ -13,5 +13,7 @@ namespace ProjectCar.Data.Interface
         List<User> GetAll();
 
         void Update(User user);
+
+        User GenerateJwt(string email);
     }
 }

@@ -13,5 +13,7 @@ namespace ProjectCar.Data.Interface
         List<Timetable> GetAll();
 
         void Update(Timetable timetable);
+
+        List<Timetable> GetMyOrders(int id);
     }
 }

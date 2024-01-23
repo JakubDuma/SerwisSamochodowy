@@ -13,5 +13,7 @@ namespace ProjectCar.Services.Interface
         List<TimetableDTO> GetAll();
 
         void Update(TimetableDTO timetable);
+
+        List<TimetableDTO> GetMyOrders(int id);
     }
 }

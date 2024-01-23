@@ -40,5 +40,10 @@ namespace ProjectCar.Data.Repository
             _context.Remove(Get(id));
             _context.SaveChanges();
         }
+
+        public User GenerateJwt(string email)
+        {
+            return _context.Users.FirstOrDefault(u => u.Email == email);
+        }
     }
 }

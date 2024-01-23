@@ -53,5 +53,12 @@ namespace ProjectCar.Controllers
         {
             _userService.Delete(id);
         }
+
+        [HttpPost("Login")]
+        public IActionResult Login([FromBody] LoginDTO dto)
+        {
+            string token = _userService.GenerateJwt(dto);
+            return Ok(token);
+        }
     }
 }
