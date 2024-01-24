@@ -8,13 +8,15 @@ namespace ProjectCar.Services.Service
 {
     internal class PartService : IPartService
     {
+        private readonly IWWRepository _ww;
         private readonly IPartRepository _partRepository;
         private readonly IMapper _mapper;
 
-        public PartService(IPartRepository partRepository, IMapper mapper)
+        public PartService(IWWRepository ww, IPartRepository partRepository, IMapper mapper)
         {
             _partRepository = partRepository;
             _mapper = mapper;
+            _ww = ww;
         }
 
         public PartDTO Create(PartDTO part)
@@ -45,6 +47,13 @@ namespace ProjectCar.Services.Service
         {
             var updatePart = _mapper.Map<Part>(part);
             _partRepository.Update(updatePart);
+        }
+        public void CreateWW(PartDTO part, int quantity)
+        {
+            var WW = _ww.Get(1);
+            WW.Name = part.Name;
+            WW.Quantity = quantity;
+            _ww.Create(WW);
         }
     }
 }

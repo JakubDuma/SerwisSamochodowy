@@ -12,8 +12,8 @@ using ProjectCar.Data;
 namespace ProjectCar.Data.Migrations
 {
     [DbContext(typeof(ProjectCarDBContext))]
-    [Migration("20240123233425_Login")]
-    partial class Login
+    [Migration("20240123234053_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

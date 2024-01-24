@@ -16,5 +16,9 @@
 		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.25" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.25" />
 	</ItemGroup>
+	
+	<ItemGroup>
+	  <Folder Include="Migrations\" />
+	</ItemGroup>
 
 </Project>

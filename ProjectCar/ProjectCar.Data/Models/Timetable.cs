@@ -2,12 +2,12 @@
 {
     public class Timetable
     {
-        public int UserId { get; set; }
         public int Id { get; set; }
+        public int UserId { get; set; }
         public string User { get; set; }
-        public DateTime Date { get; set; }
-        public string ServiceType { get; set; }
-        public string CarBrand { get; set; }
-        public string CarModel { get; set; }
+        public DateTime OrderDate { get; set; }
+        public string? Name { get; set; }
+        public DateTime? ExecutionDate { get; set; }
+        public string? Status { get; set; }
     }
 }

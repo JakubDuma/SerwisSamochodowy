@@ -21,6 +21,7 @@ namespace ProjectCar.Controllers
         }
 
         [HttpGet]
+        [Route("Test")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetMyOrders([FromHeader] Authorization token)
         {

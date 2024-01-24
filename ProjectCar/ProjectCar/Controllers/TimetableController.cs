@@ -36,13 +36,14 @@ namespace ProjectCar.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] TimetableDTO timetable)
         {
+            timetable.Name = null; timetable.ExecutionDate = null; timetable.Status = "Entered";
             var newTimetable = _timetableService.Create(timetable);
             return CreatedAtAction(nameof(Get), newTimetable.Id, newTimetable);
         }
 
         // PUT api/<PartController>/5
-        [HttpPut("{id}")]
-        public void Update(int id, [FromBody] TimetableDTO timetable)
+        [HttpPut]
+        public void Update([FromBody] TimetableDTO timetable)
         {
             _timetableService.Update(timetable);
         }

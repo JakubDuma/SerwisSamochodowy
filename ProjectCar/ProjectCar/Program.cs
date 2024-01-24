@@ -49,7 +49,7 @@ builder.Services.AddRepository();
 builder.Services.AddAutoMapper(typeof(ServiceRegistration));
 
 var app = builder.Build();
-
+app.UseAuthentication();
 app.Services.GetRequiredService<IMapper>().ConfigurationProvider.AssertConfigurationIsValid();
 
 // Configure the HTTP request pipeline.
@@ -58,7 +58,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseAuthentication();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

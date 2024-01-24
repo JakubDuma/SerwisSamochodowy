@@ -8,6 +8,7 @@ namespace ProjectCar.Data
         public DbSet<Part> Parts { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Timetable> Timetables { get; set; }
+        public DbSet<WW> WW { get; set; }
 
         // Pozostałe modele/tabele dla DB
 
