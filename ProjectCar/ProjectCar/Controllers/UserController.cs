@@ -57,8 +57,10 @@ namespace ProjectCar.Controllers
         [HttpPost("Login")]
         public IActionResult Login([FromBody] LoginDTO dto)
         {
+            string role = _userService.GetRoleByEmail(dto);
+            string name = _userService.GetNameByEmail(dto);
             string token = _userService.GenerateJwt(dto);
-            return Ok(token); //token imie i rola
+            return Ok(new { Token = token, Name = name, Role = role }); //token imie i rola
         }
     }
 }

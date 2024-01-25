@@ -15,5 +15,9 @@ namespace ProjectCar.Services.Interface
         void Update(UserDTO user);
 
         string GenerateJwt(LoginDTO dto);
+
+        string GetNameByEmail(LoginDTO dto);
+
+        string GetRoleByEmail(LoginDTO dto);
     }
 }
