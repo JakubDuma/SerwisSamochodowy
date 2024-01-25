@@ -9,14 +9,16 @@ namespace ProjectCar.Services.Service
     internal class PartService : IPartService
     {
         private readonly IWWRepository _ww;
+        private readonly IWZRepository _wz;
         private readonly IPartRepository _partRepository;
         private readonly IMapper _mapper;
 
-        public PartService(IWWRepository ww, IPartRepository partRepository, IMapper mapper)
+        public PartService(IWWRepository ww, IWZRepository wz, IPartRepository partRepository, IMapper mapper)
         {
             _partRepository = partRepository;
             _mapper = mapper;
             _ww = ww;
+            _wz = wz;
         }
 
         public PartDTO Create(PartDTO part)
@@ -48,12 +50,22 @@ namespace ProjectCar.Services.Service
             var updatePart = _mapper.Map<Part>(part);
             _partRepository.Update(updatePart);
         }
+
         public void CreateWW(PartDTO part, int quantity)
         {
-            var WW = _ww.Get(1);
+            var WW = new WW();
             WW.Name = part.Name;
             WW.Quantity = quantity;
             _ww.Create(WW);
+        }
+
+        public void CreateWZ(TimetableDTO timetable)
+        {
+            var part = _partRepository.Get(timetable.Part);
+            var WZ = new WZ();
+            WZ.Name = part.Name;
+            WZ.Quantity = 1;
+            _wz.Create(WZ);
         }
     }
 }

@@ -27,8 +27,8 @@ namespace ProjectCar.Controllers
             var identity = HttpContext.User.Identity as ClaimsIdentity;
             IEnumerable<Claim> claim = identity.Claims;
             var userIdClaim = claim
-    .Where(x => x.Type == ClaimTypes.NameIdentifier)
-    .FirstOrDefault();
+            .Where(x => x.Type == ClaimTypes.NameIdentifier)
+            .FirstOrDefault();
             var a = userIdClaim.Value;
 
             return Ok(_timetableService.GetMyOrders(int.Parse(a)));

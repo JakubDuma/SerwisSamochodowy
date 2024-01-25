@@ -12,11 +12,13 @@ namespace ProjectCar.Controllers
     {
         private readonly IOrderStatusService _statusService;
         private readonly ITimetableService _timetableService;
+        private readonly IPartService _partService;
 
-        public ServiceController(IOrderStatusService statusService, ITimetableService TimetableService)
+        public ServiceController(IOrderStatusService statusService, ITimetableService TimetableService, IPartService partservice)
         {
             _statusService = statusService;
             _timetableService = TimetableService;
+            _partService = partservice;
         }
 
         // PUT api/<ServiceController>/5
@@ -41,6 +43,7 @@ namespace ProjectCar.Controllers
             var order = _timetableService.Get(orderId);
             order.Status = "FINISHED";
             _timetableService.Update(order);
+            _partService.CreateWZ(order);
             return Ok();
         }
 

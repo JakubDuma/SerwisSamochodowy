@@ -13,6 +13,9 @@ namespace ProjectCar.Services.Interface
         List<PartDTO> GetAll();
 
         void Update(PartDTO part);
+
         void CreateWW(PartDTO part, int quantity);
+
+        void CreateWZ(TimetableDTO timetable);
     }
 }
