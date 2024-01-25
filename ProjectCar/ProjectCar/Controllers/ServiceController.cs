@@ -21,8 +21,15 @@ namespace ProjectCar.Controllers
         [HttpPut]
         public IActionResult UpdateOrderStatus([FromBody] OrderStatusDTO status)
         {
+            status.Status = "WAREHOUSE";
             _statusService.Update(status);
             return Ok();
+        }
+
+        [HttpGet]
+        public IActionResult GetServiceOrders(string status)
+        {
+            return Ok(_statusService.GetWorkingOrders(status));
         }
 
         // DELETE api/<ServiceController>/5

@@ -11,11 +11,14 @@ namespace ProjectCar.Controllers
     public class WarehouseController : ControllerBase
     {
         private readonly IPartService _partService;
+        private readonly IOrderStatusService _statusService;
 
-        public WarehouseController(IPartService partService)
+        public WarehouseController(IPartService partService, IOrderStatusService statusService)
         {
             _partService = partService;
+            _statusService = statusService;
         }
+
         [HttpPut]
         public IActionResult UpdateQuantity([FromBody] PartTransferDTO transfer)
         {
@@ -25,6 +28,12 @@ namespace ProjectCar.Controllers
             _partService.Update(part);
             _partService.CreateWW(part, part.Quantity);
             return Ok();
+        }
+
+        [HttpGet]
+        public IActionResult GetWarehouseOrders(string status)
+        {
+            return Ok(_statusService.GetWorkingOrders(status));
         }
     }
 }

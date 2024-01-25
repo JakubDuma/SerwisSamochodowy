@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProjectCar.Services.DTO;
 using ProjectCar.Services.Interface;
+using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -34,9 +37,15 @@ namespace ProjectCar.Controllers
 
         // POST api/<PartController>
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult Post([FromBody] TimetableDTO timetable)
         {//PRZESYŁAĆ TOKEN I RESZTA NA BACKU token
-            timetable.Name = null; timetable.ExecutionDate = null; timetable.Status = "SERVICE";
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            IEnumerable<Claim> claim = identity.Claims;
+            var userIdClaim = claim.Where(x => x.Type == ClaimTypes.NameIdentifier).FirstOrDefault();
+            var a = int.Parse(userIdClaim.Value);
+            var usernameClaim = claim.Where(x => x.Type == ClaimTypes.Name).FirstOrDefault().Value;
+            timetable.UserId = a; timetable.User = usernameClaim; timetable.Name = null; timetable.ExecutionDate = null; timetable.Status = "SERVICE";
             var newTimetable = _timetableService.Create(timetable);
             return CreatedAtAction(nameof(Get), newTimetable.Id, newTimetable);
         }

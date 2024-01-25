@@ -26,11 +26,10 @@ namespace ProjectCar.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
             IEnumerable<Claim> claim = identity.Claims;
-            var usernameClaim = claim
+            var userIdClaim = claim
     .Where(x => x.Type == ClaimTypes.NameIdentifier)
     .FirstOrDefault();
-            var a = usernameClaim.Value;
-
+            var a = userIdClaim.Value;
 
             return Ok(_timetableService.GetMyOrders(int.Parse(a)));
         }

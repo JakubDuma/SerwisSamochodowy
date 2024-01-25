@@ -45,5 +45,10 @@ namespace ProjectCar.Data.Repository
         {
             return _context.Timetables.Where(u => u.UserId == id).ToList();
         }
+
+        public List<Timetable> GetWorkingOrders(string status)
+        {
+            return _context.Timetables.Where(u => u.Status == status).ToList();
+        }
     }
 }
