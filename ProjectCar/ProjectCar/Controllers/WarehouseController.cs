@@ -12,11 +12,13 @@ namespace ProjectCar.Controllers
     {
         private readonly IPartService _partService;
         private readonly IOrderStatusService _statusService;
+        private readonly ITimetableService _timetableService;
 
-        public WarehouseController(IPartService partService, IOrderStatusService statusService)
+        public WarehouseController(IPartService partService, IOrderStatusService statusService, ITimetableService TimetableService)
         {
             _partService = partService;
             _statusService = statusService;
+            _timetableService = TimetableService;
         }
 
         [HttpPut]
@@ -31,9 +33,19 @@ namespace ProjectCar.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetWarehouseOrders(string status)
+        public IActionResult GetWarehouseOrders([FromBody] string status)
         {
             return Ok(_statusService.GetWorkingOrders(status));
+        }
+
+        [HttpPut]
+        [Route("ChangeToService2Status")]
+        public IActionResult ChangeStatus([FromBody] int orderId)
+        {
+            var order = _timetableService.Get(orderId);
+            order.Status = "SERVICE2";
+            _timetableService.Update(order);
+            return Ok();
         }
     }
 }

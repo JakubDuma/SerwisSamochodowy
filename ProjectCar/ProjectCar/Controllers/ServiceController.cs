@@ -11,10 +11,12 @@ namespace ProjectCar.Controllers
     public class ServiceController : ControllerBase
     {
         private readonly IOrderStatusService _statusService;
+        private readonly ITimetableService _timetableService;
 
-        public ServiceController(IOrderStatusService statusService)
+        public ServiceController(IOrderStatusService statusService, ITimetableService TimetableService)
         {
             _statusService = statusService;
+            _timetableService = TimetableService;
         }
 
         // PUT api/<ServiceController>/5
@@ -27,9 +29,19 @@ namespace ProjectCar.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetServiceOrders(string status)
+        public IActionResult GetServiceOrders([FromBody] string status)
         {
             return Ok(_statusService.GetWorkingOrders(status));
+        }
+
+        [HttpPut]
+        [Route("EndOrder")]
+        public IActionResult EndOrder([FromBody] int orderId)
+        {
+            var order = _timetableService.Get(orderId);
+            order.Status = "FINISHED";
+            _timetableService.Update(order);
+            return Ok();
         }
 
         // DELETE api/<ServiceController>/5

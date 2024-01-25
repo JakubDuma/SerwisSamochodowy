@@ -45,7 +45,7 @@ namespace ProjectCar.Controllers
             var userIdClaim = claim.Where(x => x.Type == ClaimTypes.NameIdentifier).FirstOrDefault();
             var a = int.Parse(userIdClaim.Value);
             var usernameClaim = claim.Where(x => x.Type == ClaimTypes.Name).FirstOrDefault().Value;
-            timetable.UserId = a; timetable.User = usernameClaim; timetable.Name = null; timetable.ExecutionDate = null; timetable.Status = "SERVICE";
+            timetable.UserId = a; timetable.User = usernameClaim; timetable.Name = null; timetable.ExecutionDate = null; timetable.Status = "SERVICE1";
             var newTimetable = _timetableService.Create(timetable);
             return CreatedAtAction(nameof(Get), newTimetable.Id, newTimetable);
         }
