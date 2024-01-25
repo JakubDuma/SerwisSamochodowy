@@ -60,7 +60,7 @@ namespace ProjectCar.Controllers
             string role = _userService.GetRoleByEmail(dto);
             string name = _userService.GetNameByEmail(dto);
             string token = _userService.GenerateJwt(dto);
-            return Ok(new { Token = token, Name = name, Role = role }); //token imie i rola
+            return Ok(new { Success = true, Token = token, Name = name, Role = role }); //token imie i rola
         }
     }
 }
