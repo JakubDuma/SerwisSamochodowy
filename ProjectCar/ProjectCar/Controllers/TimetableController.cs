@@ -35,8 +35,8 @@ namespace ProjectCar.Controllers
         // POST api/<PartController>
         [HttpPost]
         public IActionResult Post([FromBody] TimetableDTO timetable)
-        {
-            timetable.Name = null; timetable.ExecutionDate = null; timetable.Status = "Entered";
+        {//PRZESYŁAĆ TOKEN I RESZTA NA BACKU token
+            timetable.Name = null; timetable.ExecutionDate = null; timetable.Status = "SERVICE";
             var newTimetable = _timetableService.Create(timetable);
             return CreatedAtAction(nameof(Get), newTimetable.Id, newTimetable);
         }

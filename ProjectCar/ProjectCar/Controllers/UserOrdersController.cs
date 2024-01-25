@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProjectCar.Services.Interface;
-using System.Net;
 using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -23,10 +22,17 @@ namespace ProjectCar.Controllers
         [HttpGet]
         [Route("Test")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public IActionResult GetMyOrders([FromHeader] Authorization token)
+        public IActionResult GetMyOrders()
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
-            return Ok(_timetableService.GetMyOrders(int.Parse(identity.FindFirst("NameIdentifier").Value)));
+            IEnumerable<Claim> claim = identity.Claims;
+            var usernameClaim = claim
+    .Where(x => x.Type == ClaimTypes.NameIdentifier)
+    .FirstOrDefault();
+            var a = usernameClaim.Value;
+
+
+            return Ok(_timetableService.GetMyOrders(int.Parse(a)));
         }
 
         [HttpGet]

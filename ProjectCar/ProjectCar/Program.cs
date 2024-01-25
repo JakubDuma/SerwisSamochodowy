@@ -47,9 +47,10 @@ builder.Services.AddService();
 builder.Services.AddRepository();
 
 builder.Services.AddAutoMapper(typeof(ServiceRegistration));
+builder.Services.AddCors();
 
 var app = builder.Build();
-app.UseAuthentication();
+
 app.Services.GetRequiredService<IMapper>().ConfigurationProvider.AssertConfigurationIsValid();
 
 // Configure the HTTP request pipeline.
@@ -64,5 +65,10 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors(builder => builder
+.AllowAnyOrigin()
+.AllowAnyMethod()
+        .AllowAnyHeader());
 
 app.Run();
