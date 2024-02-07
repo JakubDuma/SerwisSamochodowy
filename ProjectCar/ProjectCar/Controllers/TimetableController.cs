@@ -43,9 +43,12 @@ namespace ProjectCar.Controllers
             var identity = HttpContext.User.Identity as ClaimsIdentity;
             IEnumerable<Claim> claim = identity.Claims;
             var userIdClaim = claim.Where(x => x.Type == ClaimTypes.NameIdentifier).FirstOrDefault();
-            var a = int.Parse(userIdClaim.Value);
+            var id = int.Parse(userIdClaim.Value);
+
             var usernameClaim = claim.Where(x => x.Type == ClaimTypes.Name).FirstOrDefault().Value;
-            timetable.UserId = a; timetable.User = usernameClaim; timetable.Name = null; timetable.ExecutionDate = null; timetable.Status = "SERVICE1";
+
+            timetable.UserId = id; timetable.User = usernameClaim; timetable.Name = null; timetable.ExecutionDate = null; timetable.Status = "SERVICE1";
+
             var newTimetable = _timetableService.Create(timetable);
             return CreatedAtAction(nameof(Get), newTimetable.Id, newTimetable);
         }
@@ -55,6 +58,15 @@ namespace ProjectCar.Controllers
         public void Update([FromBody] TimetableDTO timetable)
         {
             _timetableService.Update(timetable);
+        }
+
+        [HttpPut]
+        public void Reklamacja(int id, string Reason)
+        {
+            var service = _timetableService.Get(id);
+            service.Status = "REKLAMACJA";
+            service.ReklaDescription = Reason;
+            _timetableService.Update(service);
         }
 
         // DELETE api/<PartController>/5
