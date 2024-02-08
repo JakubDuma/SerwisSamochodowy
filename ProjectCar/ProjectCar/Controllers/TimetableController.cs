@@ -61,6 +61,7 @@ namespace ProjectCar.Controllers
         }
 
         [HttpPut]
+        [Route("Reklamacja")]
         public void Reklamacja(int id, string Reason)
         {
             var service = _timetableService.Get(id);
