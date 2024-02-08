@@ -11,6 +11,7 @@ namespace ProjectCar.Services.ServiceRegistration
             services.AddScoped<IPartService, PartService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITimetableService, TimetableService>();
+            services.AddScoped<IOrderStatusService, OrderStatusService>();
         }
     }
 }
