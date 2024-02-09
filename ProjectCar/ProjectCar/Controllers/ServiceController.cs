@@ -39,9 +39,9 @@ namespace ProjectCar.Controllers
 
         [HttpPut]
         [Route("EndOrder")]
-        public IActionResult EndOrder([FromBody] int orderId)
+        public IActionResult EndOrder([FromBody] IdDTO id)
         {
-            var order = _timetableService.Get(orderId);
+            var order = _timetableService.Get(id.Id);
             order.Status = "FINISHED";
             _timetableService.Update(order);
             _partService.CreateWZ(order);
