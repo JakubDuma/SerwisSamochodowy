@@ -66,6 +66,12 @@ namespace ProjectCar.Services.Service
             return user.Role;
         }
 
+        public int GetIdByEmail(LoginDTO dto)
+        {
+            var user = _userRepository.GenerateJwt(dto.Email);
+            return user.Id;
+        }
+
         public string GenerateJwt(LoginDTO dto)
         {
             var user = _userRepository.GenerateJwt(dto.Email);

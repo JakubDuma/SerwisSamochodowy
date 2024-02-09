@@ -25,6 +25,7 @@ namespace ProjectCar.Services.Service
         public void Update(OrderStatusDTO status)
         {
             var order = _timetableRepository.Get(status.Id);
+            order.Part = status.PartId;
             order.ExecutionDate = status.ExecutionDate;
             order.Name = status.Name;
             order.Status = status.Status;

@@ -26,6 +26,7 @@ namespace ProjectCar.Controllers
         public IActionResult UpdateOrderStatus([FromBody] OrderStatusDTO status)
         {
             status.Status = "WAREHOUSE";
+            status.ExecutionDate = DateTime.Now;
             _statusService.Update(status);
             return Ok();
         }
@@ -45,12 +46,6 @@ namespace ProjectCar.Controllers
             _timetableService.Update(order);
             _partService.CreateWZ(order);
             return Ok();
-        }
-
-        // DELETE api/<ServiceController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }

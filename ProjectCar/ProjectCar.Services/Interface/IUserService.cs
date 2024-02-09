@@ -19,5 +19,7 @@ namespace ProjectCar.Services.Interface
         string GetNameByEmail(LoginDTO dto);
 
         string GetRoleByEmail(LoginDTO dto);
+
+        int GetIdByEmail(LoginDTO dto);
     }
 }
