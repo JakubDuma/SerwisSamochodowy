@@ -40,9 +40,9 @@ namespace ProjectCar.Controllers
 
         [HttpPut]
         [Route("ChangeToService2Status")]
-        public IActionResult ChangeStatus([FromBody] int orderId)
+        public IActionResult ChangeStatus([FromBody] IdDTO id)
         {
-            var order = _timetableService.Get(orderId);
+            var order = _timetableService.Get(id.Id);
             order.Status = "SERVICE2";
             _timetableService.Update(order);
             return Ok();
